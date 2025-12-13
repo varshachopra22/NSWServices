@@ -1,0 +1,6 @@
+glue\StampDutyCalculatorSteps.class
+glue\APItestSteps.class
+pages\RevenueCalculatorPage.class
+testRunner\TestRunner.class
+pages\MotorStampDutyPage.class
+pages\PopupWindow.class
