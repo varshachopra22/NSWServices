@@ -2,9 +2,16 @@ name: CI - Selenium Cucumber Automation
 
 on:
   push:
-    branches: [ "main" ]
+    paths:
+      - "src/**"
+      - "pom.xml"
+      - ".github/workflows/**"
+
   pull_request:
-    branches: [ "main" ]
+    paths:
+      - "src/**"
+      - "pom.xml"
+      - ".github/workflows/**"
 
 jobs:
   build-and-test:
