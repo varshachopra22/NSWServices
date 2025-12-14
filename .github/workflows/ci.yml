@@ -26,37 +26,40 @@ jobs:
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
+          distribution: temurin
           java-version: '21'
           cache: maven
 
-      # 3️⃣ Setup Chrome (for Selenium UI tests)
+      # 3️⃣ Setup Chrome
       - name: Setup Chrome
         uses: browser-actions/setup-chrome@v1
 
       # 4️⃣ Run Maven tests
       - name: Run Maven tests
+        env:
+          CI: true
         run: mvn clean test
 
       # 5️⃣ Upload Cucumber HTML Report
-      - name: Upload Cucumber Report
+      - name: Upload Cucumber HTML Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-        name: cucumber-html-report
-    path: target/cucumber-report.html
+          name: cucumber-html-report
+          path: target/cucumber-report.html
 
+      # 6️⃣ Upload Cucumber JSON Report
+      - name: Upload Cucumber JSON Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cucumber-json-report
+          path: target/cucumber.json
 
-- name: Upload Cucumber JSON report
-  if: always()
-  uses: actions/upload-artifact@v4
-  with:
-    name: cucumber-json-report
-    path: target/cucumber.json
-
-- name: Upload JUnit XML report
-  if: always()
-  uses: actions/upload-artifact@v4
-  with:
-    name: cucumber-junit-report
-    path: target/cucumber.xml
+      # 7️⃣ Upload Cucumber JUnit XML Report
+      - name: Upload Cucumber JUnit XML Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cucumber-junit-report
+          path: target/cucumber.xml
