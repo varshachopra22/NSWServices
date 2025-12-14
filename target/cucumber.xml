@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="19.898" tests="2" skipped="0" failures="0" errors="0">
-<testcase classname="Validate Author Details from Open Library API" name="Verify personal name and alternate names from OL1A endpoint" time="4.305">
+<testsuite name="Cucumber" time="17.493" tests="2" skipped="0" failures="0" errors="0">
+<testcase classname="Validate Author Details from Open Library API" name="Verify personal name and alternate names from OL1A endpoint" time="8.458">
 <system-out><![CDATA[
 Given I perform a GET call to "https://openlibrary.org/authors/OL1A.json"...passed
 Then the response status code should be 200.................................passed
 And the response body should contain........................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Check motor vehicle stamp duty calculation" name="User verifies stamp duty calculation for a vehicle" time="15.356">
+<testcase classname="Check motor vehicle stamp duty calculation" name="User verifies stamp duty calculation for a vehicle" time="8.834">
 <system-out><![CDATA[
 Given the user is on the Service NSW stamp duty page........................passed
 When the user clicks the Check online button................................passed

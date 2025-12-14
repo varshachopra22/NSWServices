@@ -1,0 +1,14 @@
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+*.log
+.classpath
+.project
+.settings/
+.metadata/
+chromedriver*
+geckodriver*
+msedgedriver*
+*.tmp
+*.swp
+*.bak
+test-output/

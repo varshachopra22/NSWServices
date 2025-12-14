@@ -21,6 +21,7 @@ public class StampDutyCalculatorSteps {
         driver.manage().window().maximize();
         driver.get("https://www.service.nsw.gov.au/transaction/check-motor-vehicle-stamp-duty");
     	}
+    
         
         @When("the user clicks the Check online button")
         public void clickCheckOnline() {
