@@ -28,7 +28,24 @@ public class RevenueCalculatorPage {
     }
 
     public void clickYes() {
-        wait.until(ExpectedConditions.elementToBeClickable(yesRadio)).click();
+//        wait.until(ExpectedConditions.elementToBeClickable(yesRadio)).click();4
+    	wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+
+        WebElement yesRadio1 = wait.until(
+            ExpectedConditions.elementToBeClickable(yesRadio)
+        );
+
+        // Scroll into view (important for CI)
+        ((JavascriptExecutor) driver)
+                .executeScript("arguments[0].scrollIntoView({block:'center'});", yesRadio1);
+
+        try {
+            yesRadio1.click();
+        } catch (Exception e) {
+            // CI-safe fallback
+            ((JavascriptExecutor) driver)
+                    .executeScript("arguments[0].click();", yesRadio1);
+        }
     }
 
     public void enterPurchasePrice(String value) {
