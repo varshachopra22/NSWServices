@@ -41,15 +41,14 @@ jobs:
       - name: Run Maven tests
         run: mvn clean test
 
-      # 🔍 Debug: Show Surefire reports if tests fail
-      - name: Show Surefire reports
-        if: failure()
+      # 🔍 Debug: show cucumber output folder
+      - name: Debug Cucumber Reports Folder
+        if: always()
         run: |
-          echo "==== surefire-reports ===="
-          ls -R target/surefire-reports || true
-          echo "==== TEST OUTPUT ===="
-          cat target/surefire-reports/*.txt || true
-          cat target/surefire-reports/*.xml || true
+          echo "===== target directory ====="
+          ls -R target || true
+          echo "===== cucumber-reports ====="
+          ls -R target/cucumber-reports || true
 
       # 5️⃣ Upload Cucumber HTML Report
       - name: Upload Cucumber HTML Report
