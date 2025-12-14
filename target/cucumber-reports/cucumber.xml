@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="20.458" tests="2" skipped="0" failures="0" errors="0">
+<testcase classname="Validate Author Details from Open Library API" name="Verify personal name and alternate names from OL1A endpoint" time="11.645">
+<system-out><![CDATA[
+Given I perform a GET call to "https://openlibrary.org/authors/OL1A.json"...passed
+Then the response status code should be 200.................................passed
+And the response body should contain........................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Check motor vehicle stamp duty calculation" name="User verifies stamp duty calculation for a vehicle" time="8.584">
+<system-out><![CDATA[
+Given the user is on the Service NSW stamp duty page........................passed
+When the user clicks the Check online button................................passed
+Then the Revenue NSW calculator page should be displayed....................passed
+When the user selects Yes for passenger vehicle.............................passed
+And the user enters a purchase price of "45000".............................passed
+And the user clicks the Calculate button....................................passed
+Then the calculation popup should display correct information...............passed
+]]></system-out>
+</testcase>
+</testsuite>
