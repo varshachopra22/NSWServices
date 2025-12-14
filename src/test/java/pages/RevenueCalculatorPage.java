@@ -43,8 +43,8 @@ public class RevenueCalculatorPage {
             yesRadio1.click();
         } catch (Exception e) {
             // CI-safe fallback
-            ((JavascriptExecutor) driver)
-                    .executeScript("arguments[0].click();", yesRadio1);
+        	((JavascriptExecutor) driver)
+            .executeScript("arguments[0].click();", yesRadio1);
         }
     }
 
