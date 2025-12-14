@@ -3,17 +3,42 @@ package glue;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import io.cucumber.java.en.*;
+import io.cucumber.java.Before;
+import io.cucumber.java.After;
 import pages.MotorStampDutyPage;
 import pages.PopupWindow;
 import pages.RevenueCalculatorPage;
 
 public class StampDutyCalculatorSteps {
-	WebDriver driver = new ChromeDriver();
- 	MotorStampDutyPage home = new MotorStampDutyPage(driver);
- 	RevenueCalculatorPage calculator = new RevenueCalculatorPage(driver);
- 	PopupWindow popup = new PopupWindow(driver);
+	WebDriver driver;
+ 	MotorStampDutyPage home;
+ 	RevenueCalculatorPage calculator;
+ 	PopupWindow popup;
+ 	
+ 	@Before
+ 	public void setUp() {
+ 	    WebDriverManager.chromedriver().setup();
+
+ 	    ChromeOptions options = new ChromeOptions();
+ 	   if (System.getenv("CI") != null || Boolean.getBoolean("headless")) {
+ 		   options.addArguments(
+ 				  "--headless=new",
+ 		 	      "--no-sandbox",
+ 		 	      "--disable-dev-shm-usage",
+ 		 	      "--window-size=1920,1080"
+ 		 	    );
+ 	   } 	        
+
+ 	    driver = new ChromeDriver(options);
+
+ 	    home = new MotorStampDutyPage(driver);
+ 	    calculator = new RevenueCalculatorPage(driver);
+ 	    popup = new PopupWindow(driver);
+ 	}
  	
     @Given("the user is on the Service NSW stamp duty page")
     public void openServiceNSWPage() {
@@ -27,6 +52,7 @@ public class StampDutyCalculatorSteps {
         public void clickCheckOnline() {
             home.clickCheckOnline();
         }
+        
         @Then("the Revenue NSW calculator page should be displayed")
         public void verifyCalculatorPage() {
             Assert.assertTrue("Calculator page did NOT load!", calculator.isLoaded());
@@ -56,5 +82,11 @@ public class StampDutyCalculatorSteps {
             Assert.assertTrue(popup.getDutyPayable().contains("")); // accepts dynamic value
             driver.quit();
         }
-
+        
+        @After
+        public void tearDown() {
+            if (driver != null) {
+                driver.quit();
+            }
+        }
 }
