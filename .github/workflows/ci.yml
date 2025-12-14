@@ -39,17 +39,17 @@ jobs:
 
       # 4️⃣ Run Maven tests
       - name: Run Maven tests
-        env:
-          CI: true
         run: mvn clean test
-   - name: Show Surefire reports
-    if: failure()
-    run: |
-     echo "==== surefire-reports ===="
-     ls -R target/surefire-reports
-     echo "==== TEST OUTPUT ===="
-     cat target/surefire-reports/*.txt || true
-     cat target/surefire-reports/*.xml || true
+
+      # 🔍 Debug: Show Surefire reports if tests fail
+      - name: Show Surefire reports
+        if: failure()
+        run: |
+          echo "==== surefire-reports ===="
+          ls -R target/surefire-reports || true
+          echo "==== TEST OUTPUT ===="
+          cat target/surefire-reports/*.txt || true
+          cat target/surefire-reports/*.xml || true
 
       # 5️⃣ Upload Cucumber HTML Report
       - name: Upload Cucumber HTML Report
