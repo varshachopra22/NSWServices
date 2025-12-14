@@ -46,7 +46,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: cucumber-html-report
-          path: target/cucumber-report.html
+          path: target/cucumber-reports/cucumber-report.html
 
       # 6️⃣ Upload Cucumber JSON Report
       - name: Upload Cucumber JSON Report
@@ -54,7 +54,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: cucumber-json-report
-          path: target/cucumber.json
+          path: target/cucumber-reports/cucumber.json
 
       # 7️⃣ Upload Cucumber JUnit XML Report
       - name: Upload Cucumber JUnit XML Report
@@ -62,4 +62,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: cucumber-junit-report
-          path: target/cucumber.xml
+          path: target/cucumber-reports/cucumber.xml
